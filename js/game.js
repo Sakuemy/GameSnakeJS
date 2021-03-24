@@ -61,7 +61,7 @@ function drawGame() {
     }
     ctx.fillStyle = "black";
     ctx.font = "50px Arial";
-    ctx.fillText(score, box * 2.5, box * 1.8);
+    ctx.fillText(score, box * 17, box * 1.8);
 
     ctx.strokeRect(box, box * 3, box * 17, box * 15);
 
