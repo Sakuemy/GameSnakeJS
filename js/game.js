@@ -11,10 +11,16 @@ let box = 32;
 
 let score = 0;
 
-let foodInterval = {
-    x: Math.floor(Math.random() * 17 + 1) * box,
-    y: Math.floor(Math.random() * 15 + 3) * box
-};
+let foodInterval = {};
+
+function foodIntervalSet() {
+    foodInterval.x = Math.floor(Math.random() * 17 + 1) * box;
+    foodInterval.y = Math.floor(Math.random() * 15 + 3) * box;
+    for (let i = 0; i < snake.length; i++) {
+        if (snake[i].x == foodInterval.x && snake[i].y == foodInterval.y)
+            foodIntervalSet();
+    }
+}
 
 let snake = [];
 snake[0] = {
@@ -64,10 +70,7 @@ function drawGame() {
 
     if (snakeX == foodInterval.x && snakeY == foodInterval.y) {
         score++;
-        foodInterval = {
-            x: Math.floor(Math.random() * 17 + 1) * box,
-            y: Math.floor(Math.random() * 15 + 3) * box
-        };
+        foodIntervalSet()
     } else {
         snake.pop();
     }
@@ -92,3 +95,5 @@ function drawGame() {
 }
 
 let game = setInterval(drawGame, 100)
+
+foodIntervalSet();
